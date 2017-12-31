@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/ekhaled/svelte-hot-loader/issues"
   },
-  "homepage": "https://github.com/ekhaled/svelte-hot-loader#readme"
+  "homepage": "https://github.com/ekhaled/svelte-hot-loader#readme",
+  "dependencies": {
+    "loader-utils": "^1.1.0"
+  }
 }

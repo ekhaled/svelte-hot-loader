@@ -1,0 +1,25 @@
+{
+  "name": "svelte-hot-loader",
+  "version": "0.1.0",
+  "description": "webpack hot loader for svelte components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekhaled/svelte-hot-loader.git"
+  },
+  "keywords": [
+    "svelte",
+    "hot",
+    "loader",
+    "webpack"
+  ],
+  "author": "ekhaled",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ekhaled/svelte-hot-loader/issues"
+  },
+  "homepage": "https://github.com/ekhaled/svelte-hot-loader#readme"
+}

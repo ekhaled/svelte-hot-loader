@@ -11,10 +11,8 @@ function loadHmr(file) {
         if (module.hot) {
           extendedComponent = hotify.register(${file}, component.default);
           module.hot.accept(${file}, function() {
-            setTimeout(function(){
-              var newComponent = require(${file});
-              hotify.reload(${file}, newComponent.default);
-            }, 1)
+            var newComponent = require(${file});
+            hotify.reload(${file}, newComponent.default);
           });
         }
 

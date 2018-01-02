@@ -3,55 +3,19 @@ const loaderUtils = require('loader-utils');
 function loadHmr(file) {
   return `
         var component = require(${file});
+        var hotify = require('svelte-hot-loader/lib/hotify');
 
         var extendedComponent = component;
 
         /* hot reload */
         if (module.hot) {
-          var extendedComponent = (function (superclass) {
-            function extendedComponent(options){
-              superclass.call(this, options);
-              var self = this;
-
-              module.hot.accept();
-
-              module.hot.dispose(function(){
-                console.log('disposed');
-
-                var mountpoint = self.__mountpoint || null,
-                anchor = self.__anchor || null,
-                options = self.options;
-
-                self.destroy();
-
-                setTimeout(function(){
-                  var reloaded = require(${file}),
-                  _reloaded = new reloaded.default(options);
-                  if(mountpoint){
-                    console.log('remounting ${file}', reloaded.default.toString())
-                    _reloaded._fragment.c();
-                    _reloaded._fragment.m(mountpoint, anchor);
-                  }
-                });
-
-              })
-            }
-
-            if ( superclass ) extendedComponent.__proto__ = superclass;
-
-            extendedComponent.prototype = Object.create( superclass && superclass.prototype );
-            extendedComponent.prototype.constructor = extendedComponent;
-
-            extendedComponent.prototype._mount = function _mount (target, anchor){
-              console.log('mounted', target, anchor);
-              this.__mountpoint = target;
-              this.__anchor = anchor;
-              superclass.prototype._mount.call(this, target, anchor);
-            };
-
-            return extendedComponent;
-
-          }(component.default));
+          extendedComponent = hotify.register(${file}, component.default);
+          module.hot.accept(${file}, function() {
+            setTimeout(function(){
+              var newComponent = require(${file});
+              hotify.reload(${file}, newComponent.default);
+            }, 1)
+          });
         }
 
 

@@ -45,7 +45,9 @@ A full example can be found in the [example repo](https://github.com/ekhaled/sve
  - [x] Ensure components work with `Store`
  - [x] Preserve internal state on re-render
  - [x] Ensure re-rendered components keep their place instead of just being appended to the `parentNode`
- - [ ] Update references of components inside parent components, so that when parents try to render children, the newest version of child component is rendered
+ - [x] Update references of components inside parent components, so that when parents try to render children, the newest version of child component is rendered
+ - [ ] Handle placement problems with components in `if/else` blocks
+ - [ ] Handle stuff inside `<slots>`
 
  ---
 

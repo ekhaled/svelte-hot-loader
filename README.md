@@ -44,7 +44,7 @@ A full example can be found in the [example repo](https://github.com/ekhaled/sve
  - [x] Re-render component in place
  - [x] Ensure components work with `Store`
  - [x] Preserve internal state on re-render
- - [ ] Ensure re-rendered components keep their place instead of just being appended to the `parentNode`
+ - [x] Ensure re-rendered components keep their place instead of just being appended to the `parentNode`
  - [ ] Update references of components inside parent components, so that when parents try to render children, the newest version of child component is rendered
 
  ---

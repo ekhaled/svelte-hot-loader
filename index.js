@@ -5,11 +5,11 @@ function loadHmr(file) {
         var component = require(${file});
         var hotify = require('svelte-hot-loader/lib/hotify');
 
-        var extendedComponent = component;
+        var proxyComponent = component;
 
         /* hot reload */
         if (module.hot) {
-          extendedComponent = hotify.register(${file}, component.default);
+          proxyComponent = hotify.register(${file}, component.default);
           module.hot.accept(${file}, function() {
             var newComponent = require(${file});
             hotify.reload(${file}, newComponent.default);
@@ -17,7 +17,7 @@ function loadHmr(file) {
         }
 
 
-        module.exports = extendedComponent;
+        module.exports = proxyComponent;
     `;
 
 }

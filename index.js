@@ -27,13 +27,14 @@ module.exports = function load() {
 };
 module.exports.pitch = function pitch(remainingRequest) {
   const file = loaderUtils.stringifyRequest(this, '!!' + remainingRequest);
+  const isServer = this.target === 'node';
   const isProduction = this.minimize || process.env.NODE_ENV === 'production';
 
   if (this.cacheable) {
     this.cacheable();
   }
 
-  if (isProduction) {
+  if (isProduction || isServer) {
     return `module.exports = require(${file});`;
   }
 

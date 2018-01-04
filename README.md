@@ -1,6 +1,8 @@
 ## svelte-hot-loader
 Webpack hot loader for svelte components
 
+![Demo](https://www.dropbox.com/s/26gtw2cyllk5t4u/svelte-hot-loader.gif?raw=1)
+
 ---
 
 #### Installation

@@ -1,6 +1,6 @@
 {
   "name": "svelte-hot-loader",
-  "version": "0.5.1",
+  "version": "1.0.0",
   "description": "webpack hot loader for svelte components",
   "main": "index.js",
   "scripts": {

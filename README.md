@@ -3,11 +3,13 @@ Webpack hot loader for svelte components
 
 ---
 
-**Please Note:** This is alpha software, many of the functionalities aren't a 100% yet.
+#### Installation
+```
+$ npm install svelte-hot-loader --save-dev
+```
+#### Usage
 
----
-
-This loader does **not** replace [svelte-loader](https://github.com/sveltejs/svelte-loader). It is meant to be chained in conjuction with svelte-loader. For example:
+This loader **does not** replace [svelte-loader](https://github.com/sveltejs/svelte-loader). It is meant to be chained in conjuction with svelte-loader. For example:
 
 ```js
 module:{
@@ -23,6 +25,7 @@ module:{
         {
           loader: 'svelte-loader',
           query: {
+            dev:true,
             emitCss: false,
             store: true
           }
@@ -36,18 +39,25 @@ module:{
 
 A full example can be found in the [example repo](https://github.com/ekhaled/svelte-hot-loader-example).
 
+#### Hot reload rules and caveats:
+
+ - Turning `dev` mode on (`dev:true`) in `svelte-loader` is **not** necessary.
+ - Modifying the HTML (template) part of your component will replace and re-render the changes in place. Current local state will also be preserved.
+ - When modifying the `<script>` part of your component, instances will be replaced and re-rendered in place too.
+  However if your component has lifecycle methods that produce global side-effects, you might need to reload the whole page.
+ - During development do not use `extract-text-webpack-plugin` to extract the component's css into another file. Let it get handled by svelte. You can always turn it on when creating production builds
+ - If you are using `svelte/store`, a full reload is required if you modify `store` properties
+
+#### Turning Hot reload off
+
+Components will not be hot reloaded in the following situations:
+ 1. `process.env.NODE_ENV === 'production'`
+ 2. Webpack is minifying code
+ 3. Webpack's `target` is `node` (i.e SSR components)
+
 ---
 
-##### Steps to v1:
-
- - [x] Basic module reload
- - [x] Re-render component in place
- - [x] Ensure components work with `Store`
- - [x] Preserve internal state on re-render
- - [x] Ensure re-rendered components keep their place instead of just being appended to the `parentNode`
- - [x] Update references of components inside parent components, so that when parents try to render children, the newest version of child component is rendered
- - [ ] Handle placement problems with components in `if/else` blocks
- - [x] Handle stuff inside `<slots>`
+PRs and issues always welcome :smile:
 
  ---
 

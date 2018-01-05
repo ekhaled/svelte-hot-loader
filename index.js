@@ -1,9 +1,12 @@
 const loaderUtils = require('loader-utils');
 
-function loadHmr(file) {
+function loadHmr(file, options) {
+  options = JSON.stringify(options);
   return `
         var component = require(${file});
         var hotify = require('svelte-hot-loader/lib/hotify');
+
+        hotify.configure(${options});
 
         var proxyComponent = component;
 
@@ -30,6 +33,10 @@ module.exports.pitch = function pitch(remainingRequest) {
   const isServer = this.target === 'node';
   const isProduction = this.minimize || process.env.NODE_ENV === 'production';
 
+  const options = Object.assign({
+    noPreserveState: false
+  }, loaderUtils.getOptions(this));
+
   if (this.cacheable) {
     this.cacheable();
   }
@@ -38,5 +45,5 @@ module.exports.pitch = function pitch(remainingRequest) {
     return `module.exports = require(${file});`;
   }
 
-  return loadHmr(file);
+  return loadHmr(file, options);
 };

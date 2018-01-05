@@ -62,7 +62,7 @@ Components will not be hot reloaded in the following situations:
 Sometimes it might be necessary for some components to avoid state preservation on hot-reload.
 Or in simpler terms, you don't want the local state of the component to remain as it is after a hot-reload.
 
-This can be configured on a per component basis by adding a property `noPreserveState = true` to the component's constructor using the `setup()` method. For example:
+This can be configured on a per-component basis by adding a property `noPreserveState = true` to the component's constructor using the `setup()` method. For example:
 ```js
 export default {
   setup(comp){
@@ -72,6 +72,31 @@ export default {
   oncreate(){...}
 }
 ```
+
+Or, on a global basis by adding `{noPreserveState: true}` to the webpack loader config. For example:
+```js
+{
+    test: /\.html$/,
+    exclude: /node_modules/,
+    use: [
+      {
+        loader: "svelte-hot-loader",
+        query: { noPreserveState: true } //<-- config option
+      },
+      {
+        loader: 'svelte-loader',
+        query: {
+          dev:true,
+          emitCss: false,
+          store: true
+        }
+      }
+    ]
+  }
+```
+
+**Please Note:** If you are using `svelte/store`, `noPreserveState` has no effect on `store` properties. Neither locally, nor globally.
+
 
 ---
 

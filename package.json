@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ekhaled/svelte-hot-loader#readme",
   "dependencies": {
-    "loader-utils": "^1.1.0"
+    "loader-utils": "^1.1.0",
+    "svelte-dev-helper":"^0.5.0"
   }
 }

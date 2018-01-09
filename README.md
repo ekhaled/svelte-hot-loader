@@ -43,6 +43,7 @@ A full example can be found in the [example repo](https://github.com/ekhaled/sve
 
 ### Hot reload rules and caveats:
 
+ - `_rerender` and `_register` are reserved method names, please don't use them in `methods:{...}`
  - Turning `dev` mode on (`dev:true`) in `svelte-loader` is **not** necessary.
  - Modifying the HTML (template) part of your component will replace and re-render the changes in place. Current local state of the component will also be preserved (this can be turned off per component see [Stop preserving state](#stop-preserving-state)).
  - When modifying the `<script>` part of your component, instances will be replaced and re-rendered in place too.

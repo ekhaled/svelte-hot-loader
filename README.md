@@ -1,3 +1,5 @@
+## This project has been deprecated. [svelte-loader](https://github.com/sveltejs/svelte-loader) now has full support for hot loading built-in, please use that instead.
+
 ## svelte-hot-loader
 Webpack hot loader for svelte components
 
